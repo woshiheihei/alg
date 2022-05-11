@@ -58,6 +58,7 @@ int main()
         {
             cin >> val;
             s.push(val);
+            
         }
         else if (op == "pop")
         {
