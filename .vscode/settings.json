@@ -2,6 +2,7 @@
     "files.associations": {
         ".env*": "env",
         "ostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "stdio.h": "c"
     }
 }
