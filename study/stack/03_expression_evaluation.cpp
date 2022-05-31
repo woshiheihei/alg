@@ -50,13 +50,11 @@ int calc(string op, int l, int r)
     if (opIndex == -1)
     {
         int num = 0;
-        for (int i = r; i >= l; i--)
+        for (int i = l; i <= r; i++)
         {
             char cur = op[i];
-            if (cur == '(' || cur == ')')
-            {
+            if (cur < '0' || cur > '9')
                 continue;
-            }
 
             num = num * 10 + cur - '0';
             cout << "i: " << i << " cur: " << cur << " num: " << num << endl;
