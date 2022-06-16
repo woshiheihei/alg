@@ -10,7 +10,7 @@ char toLowerCase(char c);
 void convert(char* str);
 void print(int n, char** strArr);
 void sort(int n, char** strArr);
-int __strcmp(const char* s1, const char* s2);
+// int __strcmp(const char* s1, const char* s2);
 
 int main() {
   int n;
@@ -26,6 +26,7 @@ int main() {
   }
 
   // print(n, strArr);
+  printf("\n");
   sort(n, strArr);
   print(n, strArr);
 
@@ -54,8 +55,8 @@ void print(int n, char** strArr) {
 
 void sort(int n, char** strArr) {
   for (int i = 0; i < n; i++) {
-    for (int j = i; j < n - 1; j++) {
-      int resCmp = __strcmp(strArr[j], strArr[j + 1]);
+    for (int j = 0; j < n - i - 1; j++) {
+      int resCmp = strcmp(strArr[j], strArr[j + 1]);
       if (resCmp > 0) {
         char* tmp = strArr[j];
         strArr[j] = strArr[j + 1];
