@@ -26,8 +26,10 @@ int main() {
         printf("pop %d to heap \n", top());
         pop();
       } break;
+      case 3: {
+        output();
+      } break;
     }
-    output();
   }
 
   return 0;
@@ -67,6 +69,7 @@ int push(int x) {
   shift_up(cnt - 1);
   return 0;
 }
+
 void pop() {
   if (!size()) return;
   _swap(0, cnt - 1);
