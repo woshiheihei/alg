@@ -5,28 +5,30 @@ using namespace std;
 
 class UnionSet {
  public:
-  int *color, n;
+  int *boss, n;
+
   UnionSet(int n) : n(n) {
-    color = new int[n + 1];
+    boss = new int[n + 1];
     for (int i = 0; i <= n; i++) {
-      color[i] = i;
+      boss[i] = i;
     }
   }
 
-  int find(int x) { return color[x]; }
+  int find(int x) {
+    if (x == boss[x]) return x;
+
+    return find(boss[x]);
+  }
 
   void merge(int a, int b) {
-    int tmp = color[b];
-    for (int i = 0; i < n; i++) {
-      if (color[i] == tmp) {
-        color[i] = color[a];
-      }
+    int boss_a = find(a);
+    int boss_b = find(b);
+
+    if (boss_a == boss_b) {
+      return;
     }
-    return;
+    boss[boss_b] = boss_a;
   }
+};
 
-}
-
-int main() {
-  return 0;
-}
+int main() { return 0; }

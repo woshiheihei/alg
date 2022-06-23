@@ -24,9 +24,6 @@ class UnionSet {
     }
     return;
   }
+};
 
-}
-
-int main() {
-  return 0;
-}
+int main() { return 0; }
