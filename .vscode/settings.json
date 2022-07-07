@@ -5,6 +5,8 @@
         "vector": "cpp",
         "stdio.h": "c",
         "locale_t.h": "c",
-        "functional": "cpp"
+        "functional": "cpp",
+        "deque": "cpp",
+        "string": "cpp"
     }
 }
