@@ -5,13 +5,9 @@
 #include <iostream>
 
 void printSymbol(int n, int symbol1Index, int symbol2Index, int symbol3Index) {
-  // printf("%d %d %d\n", symbol1Index, symbol2Index, symbol3Index);
   for (int i = 0; i < n; i++) {
-    if (symbol1Index == i) {
-      printf("%c", '^');
-    } else if (symbol2Index == i) {
-      printf("%c", '^');
-    } else if (symbol3Index == i) {
+    if (i == symbol1Index - 1 || i == symbol2Index - 1 ||
+        i == symbol3Index - 1) {
       printf("%c", '^');
     } else {
       printf("%c", ' ');
@@ -19,17 +15,14 @@ void printSymbol(int n, int symbol1Index, int symbol2Index, int symbol3Index) {
   }
   printf("\n");
   for (int i = 0; i < n; i++) {
-    if (symbol1Index == i) {
-      printf("%c", '|');
-    } else if (symbol2Index == i) {
-      printf("%c", '|');
-    } else if (symbol3Index == i) {
+    if (i == symbol1Index - 1 || i == symbol2Index - 1 ||
+        i == symbol3Index - 1) {
       printf("%c", '|');
     } else {
       printf("%c", ' ');
     }
   }
-  printf("\n");
+  printf("\n\n");
   return;
 }
 
@@ -39,7 +32,7 @@ void outputProcess(int *arr, int n, int head, int tail, int mid) {
   int symbol2Index = 0;
   int symbol3Index = 0;
   for (int i = 0; i < n; i++) {
-    delimiterNum += printf("%5d ", arr[i]);
+    delimiterNum += printf("%5d", arr[i]);
     if (i <= head) symbol1Index = delimiterNum;
     if (i <= tail) symbol2Index = delimiterNum;
     if (i <= mid) symbol3Index = delimiterNum;
@@ -50,11 +43,11 @@ void outputProcess(int *arr, int n, int head, int tail, int mid) {
   }
   printf("\n");
   for (int i = 0; i < n; i++) {
-    printf("%5d ", i);
+    printf("%5d", i);
   }
   printf("\n");
 
-  printSymbol(n, symbol1Index, symbol2Index, symbol3Index);
+  printSymbol(delimiterNum, symbol1Index, symbol2Index, symbol3Index);
   return;
 }
 
@@ -84,7 +77,7 @@ int binarySearch(int *arr, int n, int x) {
 void outputArr(int *arr, int n) {
   int delimiterNum = 0;
   for (int i = 0; i < n; i++) {
-    delimiterNum += printf("%5d ", arr[i]);
+    delimiterNum += printf("%5d", arr[i]);
   }
   printf("\n");
   for (int i = 0; i < delimiterNum; i++) {
@@ -92,7 +85,7 @@ void outputArr(int *arr, int n) {
   }
   printf("\n");
   for (int i = 0; i < n; i++) {
-    printf("%5d ", i);
+    printf("%5d", i);
   }
   printf("\n");
 
