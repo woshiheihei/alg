@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include <iostream>
 
 int binarySearch(int *arr, int n, int x) {
@@ -10,15 +11,15 @@ int binarySearch(int *arr, int n, int x) {
     mid = head + (tail - head) / 2;
     if (arr[mid] == x) return mid;
 
-    if (arr[mid] > x) {
-      tail = mid - 1;
+    if (arr[mid] >= x) {
+      tail = mid;
     } else {
       head = mid + 1;
     }
   }
 
   for (int i = head; i <= tail; i++) {
-    if (arr[i] == x) {
+    if (arr[i] >= x) {
       return i;
     }
   }
@@ -33,15 +34,24 @@ int *getRandomArray(int n) {
   arr[0] = rand() % 20 + 1;
 
   for (int i = 1; i < n; i++) {
-    arr[i] = arr[i - 1] + rand() % 10;
+    arr[i] = arr[i - 1] + rand() % 5;
   }
 
   return arr;
 }
 
 void outputArr(int *arr, int n) {
+  int delimiterNum = 0;
   for (int i = 0; i < n; i++) {
-    printf("%d ", arr[i]);
+    delimiterNum += printf("%5d ", arr[i]);
+  }
+  printf("\n");
+  for (int i = 0; i < delimiterNum; i++) {
+    printf("-");
+  }
+  printf("\n");
+  for (int i = 0; i < n; i++) {
+    printf("%5d ", i);
   }
   printf("\n");
 
@@ -53,9 +63,11 @@ int main() {
   scanf("%d", &n);
   int *arr = getRandomArray(n);
   outputArr(arr, n);
-  scanf("%d", &x);
-  int index = binarySearch(arr, n, x);
-  printf("arr[%d] = %d\n", index, x);
+
+  while (scanf("%d", &x) != EOF) {
+    int index = binarySearch(arr, n, x);
+    printf("arr[%d] = %d\n", index, x);
+  }
 
   return 0;
 }
