@@ -1,15 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include <iostream>
+
+void printSymbol(int n, int symbol1Index, int symbol2Index, int symbol3Index) {
+  // printf("%d %d %d\n", symbol1Index, symbol2Index, symbol3Index);
+  for (int i = 0; i < n; i++) {
+    if (symbol1Index == i) {
+      printf("%c", '^');
+    } else if (symbol2Index == i) {
+      printf("%c", '^');
+    } else if (symbol3Index == i) {
+      printf("%c", '^');
+    } else {
+      printf("%c", ' ');
+    }
+  }
+  printf("\n");
+  for (int i = 0; i < n; i++) {
+    if (symbol1Index == i) {
+      printf("%c", '|');
+    } else if (symbol2Index == i) {
+      printf("%c", '|');
+    } else if (symbol3Index == i) {
+      printf("%c", '|');
+    } else {
+      printf("%c", ' ');
+    }
+  }
+  printf("\n");
+  return;
+}
+
+void outputProcess(int *arr, int n, int head, int tail, int mid) {
+  int delimiterNum = 0;
+  int symbol1Index = 0;
+  int symbol2Index = 0;
+  int symbol3Index = 0;
+  for (int i = 0; i < n; i++) {
+    delimiterNum += printf("%5d ", arr[i]);
+    if (i <= head) symbol1Index = delimiterNum;
+    if (i <= tail) symbol2Index = delimiterNum;
+    if (i <= mid) symbol3Index = delimiterNum;
+  }
+  printf("\n");
+  for (int i = 0; i < delimiterNum; i++) {
+    printf("-");
+  }
+  printf("\n");
+  for (int i = 0; i < n; i++) {
+    printf("%5d ", i);
+  }
+  printf("\n");
+
+  printSymbol(n, symbol1Index, symbol2Index, symbol3Index);
+  return;
+}
 
 int binarySearch(int *arr, int n, int x) {
   int head = 0, tail = n - 1, mid;
 
   while (tail - head > 3) {
     mid = head + (tail - head) / 2;
+    outputProcess(arr, n, head, tail, mid);
     if (arr[mid] == x) return mid;
-
     if (arr[mid] > x) {
       tail = mid - 1;
     } else {
@@ -26,6 +81,24 @@ int binarySearch(int *arr, int n, int x) {
   return -1;
 }
 
+void outputArr(int *arr, int n) {
+  int delimiterNum = 0;
+  for (int i = 0; i < n; i++) {
+    delimiterNum += printf("%5d ", arr[i]);
+  }
+  printf("\n");
+  for (int i = 0; i < delimiterNum; i++) {
+    printf("-");
+  }
+  printf("\n");
+  for (int i = 0; i < n; i++) {
+    printf("%5d ", i);
+  }
+  printf("\n");
+
+  return;
+}
+
 int *getRandomArray(int n) {
   srand(time(NULL));  // Initialization, should only be called once.
   int r = rand();
@@ -37,15 +110,6 @@ int *getRandomArray(int n) {
   }
 
   return arr;
-}
-
-void outputArr(int *arr, int n) {
-  for (int i = 0; i < n; i++) {
-    printf("%d ", arr[i]);
-  }
-  printf("\n");
-
-  return;
 }
 
 int main() {
